@@ -68,5 +68,8 @@ Derived/
 
 ### Tuist managed dependencies ###
 Tuist/Dependencies
+<<<<<<< HEAD
 
 XCConfig/
+=======
+>>>>>>> 226919d (Initialize project)
