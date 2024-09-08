@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Pretendard-Bold</string>
-		<string>Pretendard-SemiBold</string>
-		<string>Pretendard-Regular</string>
-	</array>
 	<key>API_BASE_URL</key>
 	<string>$(API_BASE_URL)</string>
 	<key>AppIdentifierPrefix</key>
@@ -38,6 +32,12 @@
 	<true/>
 	<key>S3_BASE_URL</key>
 	<string>$(S3_BASE_URL)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Pretendard-Bold</string>
+		<string>Pretendard-SemiBold</string>
+		<string>Pretendard-Regular</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
