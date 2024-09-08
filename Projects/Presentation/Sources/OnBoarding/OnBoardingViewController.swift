@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DesignSystem
 
 import ReactorKit
 
@@ -16,7 +17,7 @@ public final class OnBoardingViewController: BaseViewController<OnBoardingReacto
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = DesignSystemAsset.AzureColor.azure500.color
 
         // Do any additional setup after loading the view.
     }

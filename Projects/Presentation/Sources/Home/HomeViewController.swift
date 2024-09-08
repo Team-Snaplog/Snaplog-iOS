@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DesignSystem
 
 import ReactorKit
 
@@ -16,7 +17,7 @@ public final class HomeViewController: BaseViewController<HomeReactor>, ReactorK
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = DesignSystemAsset.NeutralColor.neutral800.color
         // Do any additional setup after loading the view.
     }
 
