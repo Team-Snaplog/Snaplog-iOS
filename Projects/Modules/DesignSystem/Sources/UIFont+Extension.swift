@@ -10,9 +10,9 @@ import UIKit
 
 extension UIFont {
     enum FontFamily: String {
-        case bold // 700
-        case semiBold // 600
-        case regular // 400
+        case bold = "Pretendard-Bold" // 700
+        case semiBold = "Pretendard-SemiBold" // 600
+        case regular = "Pretendard-Regular" // 400
 
         var name: String {
             return self.rawValue
@@ -96,7 +96,7 @@ public extension Fonts {
         return font
     }
 
-    var lineHeight: CGFloat {
-        return fontProperty.lineHeight
-    }
+//    var lineHeight: CGFloat {
+//        return fontProperty.lineHeight
+//    }
 }

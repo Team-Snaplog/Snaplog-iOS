@@ -34,9 +34,9 @@
 	<string>$(S3_BASE_URL)</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Pretendard-Bold</string>
-		<string>Pretendard-SemiBold</string>
-		<string>Pretendard-Regular</string>
+		<string>Pretendard-Bold.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>Pretendard-Regular.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
