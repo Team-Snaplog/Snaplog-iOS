@@ -1,5 +1,5 @@
 //
-//  OnBoardingReactor.swift
+//  SignInReactor.swift
 //  Presentation
 //
 //  Created by 강민성 on 8/28/24.
@@ -13,7 +13,7 @@ import RxRelay
 import ReactorKit
 import RxFlow
 
-public final class OnBoardingReactor: BaseReactor {
+public final class SignInReactor: BaseReactor {
 
     public var steps = PublishRelay<Step>()
     public let initialState: State

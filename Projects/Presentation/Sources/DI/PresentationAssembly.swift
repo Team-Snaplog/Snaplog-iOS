@@ -24,12 +24,12 @@ public final class PresentationAssembly: Assembly {
             HomeViewController(resolver.resolve(HomeReactor.self)!)
         }
         
-        container.register(OnBoardingReactor.self) { resolver in
-            OnBoardingReactor()
+        container.register(SignInReactor.self) { resolver in
+            SignInReactor()
         }
         
-        container.register(OnBoardingViewController.self) { resolver in
-            OnBoardingViewController(resolver.resolve(OnBoardingReactor.self)!)
+        container.register(SignInViewController.self) { resolver in
+            SignInViewController(resolver.resolve(SignInReactor.self)!)
         }
     }
 }

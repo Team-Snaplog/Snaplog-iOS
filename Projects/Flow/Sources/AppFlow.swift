@@ -29,8 +29,8 @@ public final class AppFlow: Flow {
         guard let step = step as? AppStep else { return .none }
         
         switch step {
-        case .onBoardingViewIsRequired:
-            return self.navigateToOnBoardingViewController()
+        case .signInViewIsRequired:
+            return self.navigateToSignInViewController()
 
         case .homeViewIsRequired:
             return self.navigateToHomeViewController()
@@ -39,18 +39,18 @@ public final class AppFlow: Flow {
 }
 
 public extension AppFlow {
-    func navigateToOnBoardingViewController() -> FlowContributors {
-        let onBoardingFlow = OnBoardingFlow(container: container)
-        
-        Flows.use(onBoardingFlow, when: .created) { (root) in
+    func navigateToSignInViewController() -> FlowContributors {
+        let signInFlow = SignInFlow(container: container)
+
+        Flows.use(signInFlow, when: .created) { (root) in
             self.window.rootViewController = root
         }
         
         return .one(
             flowContributor: .contribute(
-                withNextPresentable: onBoardingFlow,
+                withNextPresentable: signInFlow,
                 withNextStepper: OneStepper(
-                    withSingleStep: OnBoardingStep.onBoardingViewIsRequired)))
+                    withSingleStep: SignInStep.signInViewIsRequired)))
     }
     
     func navigateToHomeViewController() -> FlowContributors {

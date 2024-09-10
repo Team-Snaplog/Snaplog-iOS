@@ -1,5 +1,5 @@
 //
-//  OnBoardingViewController.swift
+//  SignInViewController.swift
 //  Presentation
 //
 //  Created by 강민성 on 8/28/24.
@@ -11,9 +11,9 @@ import DesignSystem
 
 import ReactorKit
 
-public final class OnBoardingViewController: BaseViewController<OnBoardingReactor>, ReactorKit.View {
+public final class SignInViewController: BaseViewController<SignInReactor>, ReactorKit.View {
     
-    public typealias Reactor = OnBoardingReactor
+    public typealias Reactor = SignInReactor
 
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -87,8 +87,8 @@ public final class OnBoardingViewController: BaseViewController<OnBoardingReacto
     }
 }
 
-extension OnBoardingViewController {
-    public func bind(reactor: OnBoardingReactor) {
+extension SignInViewController {
+    public func bind(reactor: SignInReactor) {
         
     }
 }

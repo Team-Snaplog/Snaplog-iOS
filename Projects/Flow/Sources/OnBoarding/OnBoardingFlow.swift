@@ -1,5 +1,5 @@
 //
-//  OnBoardingFlow.swift
+//  SignInFlow.swift
 //  Flow
 //
 //  Created by 강민성 on 9/2/24.
@@ -13,7 +13,7 @@ import Core
 import RxFlow
 import Swinject
 
-public final class OnBoardingFlow: Flow {
+public final class SignInFlow: Flow {
     public let container: Container
     private let rootViewController = NavigationController()
     public var root: Presentable {
@@ -25,11 +25,11 @@ public final class OnBoardingFlow: Flow {
     }
     
     public func navigate(to step: Step) -> FlowContributors {
-        guard let step = step as? OnBoardingStep else { return .none }
+        guard let step = step as? SignInStep else { return .none }
         
         switch step {
-        case .onBoardingViewIsRequired:
-            return navigateToOnBoardingViewController()
+        case .signInViewIsRequired:
+            return navigateToSignInViewController()
             
         default:
             return .none
@@ -37,12 +37,12 @@ public final class OnBoardingFlow: Flow {
     }
 }
 
-public extension OnBoardingFlow {
-    func navigateToOnBoardingViewController() -> FlowContributors {
-        let onBoardingViewController = container.resolve(OnBoardingViewController.self)!
+public extension SignInFlow {
+    func navigateToSignInViewController() -> FlowContributors {
+        let signInViewController = container.resolve(SignInViewController.self)!
         
-        self.rootViewController.setViewControllers([onBoardingViewController], animated: true)
+        self.rootViewController.setViewControllers([signInViewController], animated: true)
         
-        return .one(flowContributor: .contribute(withNextPresentable: onBoardingViewController, withNextStepper: onBoardingViewController.reactor))
+        return .one(flowContributor: .contribute(withNextPresentable: signInViewController, withNextStepper: signInViewController.reactor))
     }
 }

@@ -1,5 +1,5 @@
 //
-//  OnBoardingStep.swift
+//  SignInStep.swift
 //  Core
 //
 //  Created by 강민성 on 9/2/24.
@@ -10,8 +10,8 @@ import Foundation
 
 import RxFlow
 
-public enum OnBoardingStep: Step {
-    case onBoardingViewIsRequired
+public enum SignInStep: Step {
+    case signInViewIsRequired
     case signInIsRequired
     case signUpIsRequired
     case homeViewIsRequired
