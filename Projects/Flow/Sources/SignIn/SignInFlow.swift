@@ -30,7 +30,10 @@ public final class SignInFlow: Flow {
         switch step {
         case .signInViewIsRequired:
             return navigateToSignInViewController()
-            
+
+        case .onBoardingViewIsRequired:
+            return .end(forwardToParentFlowWithStep: AppStep.onBoardingViewIsRequired)
+
         default:
             return .none
         }
@@ -43,6 +46,6 @@ public extension SignInFlow {
         
         self.rootViewController.setViewControllers([signInViewController], animated: true)
         
-        return .one(flowContributor: .contribute(withNextPresentable: signInViewController, withNextStepper: signInViewController.reactor))
+        return .one(flowContributor: .contribute(withNextPresentable: signInViewController, withNextStepper: signInViewController.reactor!))
     }
 }

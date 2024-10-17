@@ -46,9 +46,9 @@ public extension Project {
         ]
 
         let settings: Settings = .settings(
-            base: env.baseSetting
+            base: env.baseSetting,
 //                .merging(.codeSign)
-                .merging(settings),
+//                .merging(settings),
             configurations: configurations,
             defaultSettings: .recommended
         )

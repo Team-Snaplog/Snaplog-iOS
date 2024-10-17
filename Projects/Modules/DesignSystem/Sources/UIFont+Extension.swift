@@ -37,6 +37,8 @@ public enum Fonts {
     case labelLarge, labelMedium, labelSmall // regular
     case buttonLarge, buttonMedium, buttonSmall // bold
 
+    case calendarWeekdayFont
+
     public var fontProperty: FontProperty {
         switch self {
 
@@ -68,13 +70,13 @@ public enum Fonts {
             return FontProperty(style: .semiBold, size: 14, lineHeight: 20)
 
         case .labelLarge:
-            return FontProperty(style: .regular, size: 16, lineHeight: 24)
+            return FontProperty(style: .semiBold, size: 16, lineHeight: 24)
 
         case .labelMedium:
-            return FontProperty(style: .regular, size: 14, lineHeight: 20)
+            return FontProperty(style: .semiBold, size: 12, lineHeight: 16)
 
         case .labelSmall:
-            return FontProperty(style: .regular, size: 12, lineHeight: 16)
+            return FontProperty(style: .semiBold, size: 11, lineHeight: 16)
 
         case .buttonLarge:
             return FontProperty(style: .bold, size: 18, lineHeight: 24)
@@ -84,6 +86,9 @@ public enum Fonts {
 
         case .buttonSmall:
             return FontProperty(style: .bold, size: 14, lineHeight: 16)
+
+        case .calendarWeekdayFont:
+            return FontProperty(style: .semiBold, size: 10, lineHeight: 12)
         }
     }
 }
@@ -95,6 +100,7 @@ public extension Fonts {
         }
         return font
     }
+    
 
 //    var lineHeight: CGFloat {
 //        return fontProperty.lineHeight

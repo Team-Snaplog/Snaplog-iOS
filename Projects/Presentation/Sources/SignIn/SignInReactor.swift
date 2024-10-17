@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Core
 
 import RxSwift
 import RxRelay
@@ -19,12 +20,12 @@ public final class SignInReactor: BaseReactor {
     public let initialState: State
     private let disposeBag: DisposeBag = DisposeBag()
 
-    init() {
+    public init() {
         self.initialState = .init()
     }
 
     public enum Action {
-        
+        case didTapStartWithGuestButton
     }
 
     public enum Mutation {
@@ -33,5 +34,13 @@ public final class SignInReactor: BaseReactor {
 
     public struct State {
         
+    }
+
+    public func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case .didTapStartWithGuestButton:
+            steps.accept(SignInStep.onBoardingViewIsRequired)
+            return .empty()
+        }
     }
 }

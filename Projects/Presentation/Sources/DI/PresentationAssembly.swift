@@ -21,7 +21,7 @@ public final class PresentationAssembly: Assembly {
         }
         
         container.register(HomeViewController.self) { resolver in
-            HomeViewController(resolver.resolve(HomeReactor.self)!)
+            HomeViewController(with: resolver.resolve(HomeReactor.self)!)
         }
         
         container.register(SignInReactor.self) { resolver in
@@ -29,7 +29,31 @@ public final class PresentationAssembly: Assembly {
         }
         
         container.register(SignInViewController.self) { resolver in
-            SignInViewController(resolver.resolve(SignInReactor.self)!)
+            SignInViewController(with: resolver.resolve(SignInReactor.self)!)
         }
+
+        container.register(OnBoardingReactor.self) { resolver in
+            OnBoardingReactor()
+        }
+
+        container.register(OnBoardingViewController.self) { resolver in
+            OnBoardingViewController(with: resolver.resolve(OnBoardingReactor.self)!)
+        }
+
+//        container.register(TopicCollectionViewCellReactor.self) { resolver in
+//            TopicCollectionViewCellReactor(item: resolver.resolve(TopicEntity.self)!, indexPath: IndexPath(item: 0, section: 0))
+//        }
+//
+//        container.register(SnapPreviewTableViewCellReactor.self) { resolver in
+//            SnapPreviewTableViewCellReactor(item: resolver.resolve(SnapEntity.self)!)
+//        }
+//
+//        container.register(SnapPreviewImageCollectionViewCellReactor.self) { resolver in
+//            SnapPreviewImageCollectionViewCellReactor(item: nil)
+//        }
+
+//        container.register(OnBoardingCalendarView.self) { resolver in
+//            OnBoardingCalendarView()
+//        }
     }
 }

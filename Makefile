@@ -17,3 +17,4 @@ reset:
 ci_generate:
 	tuist fetch
 	TUIST_CI=1 tuist generate
+

@@ -21,11 +21,11 @@ let project = Project.makeModule(
         .SPM.Alamofire,
         .SPM.Moya,
         .SPM.RxMoya,
-        .SPM.Lottie,
         .SPM.kingfisher,
         .SPM.ReactorKit,
         .SPM.RxGesture,
         .SPM.Swinject,
         .SPM.RxKeyboard,
+        .SPM.FSCalendar
     ]
 )

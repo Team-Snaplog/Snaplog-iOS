@@ -34,6 +34,9 @@ public final class AppFlow: Flow {
 
         case .homeViewIsRequired:
             return self.navigateToHomeViewController()
+
+        case .onBoardingViewIsRequired:
+            return self.navigateToOnBoardingViewController()
         }
     }
 }
@@ -63,5 +66,17 @@ public extension AppFlow {
         }
         
         return .one(flowContributor: .contribute(withNextPresentable: homeFlow, withNextStepper: OneStepper(withSingleStep: HomeStep.homeViewIsRequired)))
+    }
+
+    func navigateToOnBoardingViewController() -> FlowContributors {
+        let onBoardingFlow = OnBoardingFlow(container: container)
+
+        Flows.use(onBoardingFlow, when: .created) { (root) in
+            UIView.transition(with: self.window, duration: 0.3, options: .transitionCrossDissolve) {
+                self.window.rootViewController = root
+            }
+        }
+
+        return .one(flowContributor: .contribute(withNextPresentable: onBoardingFlow, withNextStepper: OneStepper(withSingleStep: OnBoardingStep.onBoardingViewIsRequired)))
     }
 }

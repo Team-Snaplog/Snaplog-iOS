@@ -40,6 +40,6 @@ extension HomeFlow {
         
         self.rootViewController.setViewControllers([homeViewController], animated: true)
         
-        return .one(flowContributor: .contribute(withNextPresentable: homeViewController, withNextStepper: homeViewController.reactor))
+        return .one(flowContributor: .contribute(withNextPresentable: homeViewController, withNextStepper: homeViewController.reactor!))
     }
 }

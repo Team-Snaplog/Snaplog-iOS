@@ -19,7 +19,7 @@ public final class HomeReactor: BaseReactor {
     public let initialState: State
     private let disposeBag: DisposeBag = DisposeBag()
     
-    init() {
+    public init() {
         self.initialState = .init()
     }
     

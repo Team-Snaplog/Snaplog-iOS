@@ -9,10 +9,12 @@
 import UIKit
 import DesignSystem
 
+import RxSwift
+import RxCocoa
 import ReactorKit
 
 public final class SignInViewController: BaseViewController<SignInReactor>, ReactorKit.View {
-    
+
     public typealias Reactor = SignInReactor
 
     let logoImageView: UIImageView = {
@@ -38,9 +40,19 @@ public final class SignInViewController: BaseViewController<SignInReactor>, Reac
         button.setTitle("또는 게스트로 시작하기", for: .normal)
         button.titleLabel?.font = Fonts.labelMedium.font
         button.setTitleColor(DesignSystemAsset.NeutralColor.neutral500.color, for: .normal)
+        button.isUserInteractionEnabled = true
         return button
     }()
 
+    public init(with reactor: Reactor) {
+        super.init(nibName: nil, bundle: nil)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         render()
@@ -89,6 +101,20 @@ public final class SignInViewController: BaseViewController<SignInReactor>, Reac
 
 extension SignInViewController {
     public func bind(reactor: SignInReactor) {
-        
+        bindAction(reactor: reactor)
+    }
+
+    private func bindAction(reactor: SignInReactor) {
+
+        guestButton.rx.tap
+            .subscribe(onNext: {
+                print("ASFAS")
+            })
+            .disposed(by: disposeBag)
+
+        guestButton.rx.tap
+            .map { Reactor.Action.didTapStartWithGuestButton }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
 }

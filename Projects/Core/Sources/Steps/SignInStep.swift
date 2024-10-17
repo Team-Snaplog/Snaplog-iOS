@@ -15,4 +15,5 @@ public enum SignInStep: Step {
     case signInIsRequired
     case signUpIsRequired
     case homeViewIsRequired
+    case onBoardingViewIsRequired
 }

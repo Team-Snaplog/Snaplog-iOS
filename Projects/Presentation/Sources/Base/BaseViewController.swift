@@ -19,8 +19,6 @@ public class BaseViewController<Reactor: BaseReactor>: UIViewController {
     
     // MARK: - Properties
     
-    public let reactor: Reactor
-    
     private let keyboardHeight = BehaviorRelay<CGFloat>(value: 0)
     public var disposeBag = DisposeBag()
     
@@ -53,15 +51,6 @@ public class BaseViewController<Reactor: BaseReactor>: UIViewController {
         let view = PassThroughView()
         return view
     }()
-    
-    public init(_ reactor: Reactor) {
-        self.reactor = reactor
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: - Life Cycle
     

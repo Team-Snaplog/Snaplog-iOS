@@ -22,7 +22,7 @@ public let env = ProjectEnvironment(
     targetName: "Snaplog",
     targetTestName: "Snaplog-Test",
     organizationName: "com.team.snaplog",
-    deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone]),
+    deploymentTarget: .iOS(targetVersion: "16.0", devices: [.iphone]),
     platform: .iOS,
-    baseSetting: ["OTHER_LDFLAGS": ["$(inherited) -Objc"]]
+    baseSetting: ["OTHER_LDFLAGS": ["-ObjC -framework Alamofire -framework FSCalendar"]]
 )

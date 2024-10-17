@@ -12,4 +12,5 @@ import RxFlow
 public enum AppStep: Step {
     case signInViewIsRequired
     case homeViewIsRequired
+    case onBoardingViewIsRequired
 }

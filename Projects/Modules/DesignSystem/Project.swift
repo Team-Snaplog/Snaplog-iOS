@@ -17,7 +17,5 @@ let project = Project.makeModule(
         .Modules.utility
     ],
     resources: .resources,
-    resourceSynthesizers: .default + [
-        .custom(name: "Lottie", parser: .json, extensions: ["json"])
-    ]
+    resourceSynthesizers: .default
 )
