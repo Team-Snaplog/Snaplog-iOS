@@ -9,6 +9,7 @@
 import Foundation
 import Domain
 import DesignSystem
+import Core
 
 import RxSwift
 import RxRelay
@@ -30,6 +31,7 @@ public final class OnBoardingReactor: BaseReactor {
         case viewWillAppear
         case didTapPreviousMonthButton
         case didTapNextMonthButton
+        case didTapTopicHeaderCell(IndexPath)
     }
 
     public enum Mutation {
@@ -37,6 +39,7 @@ public final class OnBoardingReactor: BaseReactor {
         case setCurrentPage(Date)
         case setTopics([TopicEntity])
         case setPreviews([SnapEntity])
+//        case setTopicTapped
     }
 
     public struct State {
@@ -78,12 +81,13 @@ public final class OnBoardingReactor: BaseReactor {
                                 DesignSystemAsset.Image.frame56.image],
                        topicId: 3)
         ]
+        var isAppendAddTopic: Bool = false
     }
 
     public func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewWillAppear:
-            return Observable.concat(
+            return .concat(
                 [.just(.setTopics(currentState.topics)),
                  .just(.setPreviews(currentState.snaps))
                 ])
@@ -96,6 +100,16 @@ public final class OnBoardingReactor: BaseReactor {
             let currentDate = self.currentState.currentPage
             let newDate = Calendar.current.date(byAdding: .month, value: -1, to: currentDate) ?? currentDate
             return .just(.changeCurrentPage(newDate))
+
+        case .didTapTopicHeaderCell(let indexPath):
+            if indexPath.item == 0 {
+                print("TAP FIRST")
+                steps.accept(OnBoardingStep.addTopicViewIsRequired)
+                return .empty()
+            } else {
+                print("TAP ELSE")
+                return .empty()
+            }
         }
     }
 
@@ -110,9 +124,15 @@ public final class OnBoardingReactor: BaseReactor {
             state.currentPage = date
 
         case .setTopics(let topics):
-            var appendedTopics = topics
-            appendedTopics.insert(TopicEntity(topicId: 0, topicTitle: "주제 추가", topicEmoji: "+"), at: 0)
-            state.topics = appendedTopics
+            if currentState.isAppendAddTopic == false {
+                var appendedTopics = topics
+                appendedTopics.insert(TopicEntity(topicId: 0, topicTitle: "주제 추가", topicEmoji: "+"), at: 0)
+                state.isAppendAddTopic = true
+                state.topics = appendedTopics
+            } else {
+                var appendedTopics = topics
+                state.topics = appendedTopics
+            }
 
         case .setPreviews(let snaps):
             state.snaps = snaps

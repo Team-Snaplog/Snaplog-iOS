@@ -72,7 +72,7 @@ public extension AppFlow {
         let onBoardingFlow = OnBoardingFlow(container: container)
 
         Flows.use(onBoardingFlow, when: .created) { (root) in
-            UIView.transition(with: self.window, duration: 0.3, options: .transitionCrossDissolve) {
+            UIView.transition(with: self.window, duration: 0.3) {
                 self.window.rootViewController = root
             }
         }

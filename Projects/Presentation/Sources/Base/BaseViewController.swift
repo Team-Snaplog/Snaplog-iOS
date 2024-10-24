@@ -8,6 +8,7 @@
 
 import UIKit
 import Utility
+import DesignSystem
 
 import RxSwift
 import RxCocoa
@@ -38,6 +39,7 @@ public class BaseViewController<Reactor: BaseReactor>: UIViewController {
     
     public var backButton: UIButton = {
         let button = UIButton(type: .custom)
+        button.setImage(DesignSystemAsset.Image.arrowNarrowLeft.image, for: .normal)
         return button
     }()
     
@@ -57,9 +59,19 @@ public class BaseViewController<Reactor: BaseReactor>: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationController
         configureUI()
     }
-    
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+//    public override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//    }
+
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?){
         super.touchesEnded(touches, with: event)
         self.view.endEditing(true)

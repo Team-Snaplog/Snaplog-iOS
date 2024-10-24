@@ -211,10 +211,20 @@ extension OnBoardingViewController {
         //            .bind(to: reactor.action)
         //            .disposed(by: disposeBag)
         //
-        //        calendarView.nextMonthButton.rx.tap
-        //            .map { Reactor.Action.didTapNextMonthButton }
-        //            .bind(to: reactor.action)
-        //            .disposed(by: disposeBag)
+//        calendarView.headerView.nextMonthButton.rx.tap
+//                    .map { Reactor.Action.didTapNextMonthButton }
+//                    .bind(to: reactor.action)
+//                    .disposed(by: disposeBag)
+
+        onBoardingHeaderView.topicCollectionView.rx.itemSelected
+            .map { Reactor.Action.didTapTopicHeaderCell($0)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+
+//            .subscribe(onNext: { [weak self] indexPath in
+//                guard let self = self else { return }
+//
+//            })
     }
 
     private func bindState(reactor: OnBoardingReactor) {
@@ -227,12 +237,6 @@ extension OnBoardingViewController {
             ) { index, item, cell in
                 let cellReactor = TopicCollectionViewCellReactor(item: item, indexPath: IndexPath(item: index, section: 0))
                 cell.reactor = cellReactor
-
-                cell.rx.tapGesture()
-                    .when(.recognized)
-                    .map { _ in TopicCollectionViewCellReactor.Action.didTapAddTopicCell }
-                    .bind(to: cellReactor.action)
-                    .disposed(by: cellReactor.disposeBag)
             }
             .disposed(by: disposeBag)
 

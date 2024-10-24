@@ -40,17 +40,25 @@ public final class PresentationAssembly: Assembly {
             OnBoardingViewController(with: resolver.resolve(OnBoardingReactor.self)!)
         }
 
-//        container.register(TopicCollectionViewCellReactor.self) { resolver in
-//            TopicCollectionViewCellReactor(item: resolver.resolve(TopicEntity.self)!, indexPath: IndexPath(item: 0, section: 0))
-//        }
-//
-//        container.register(SnapPreviewTableViewCellReactor.self) { resolver in
-//            SnapPreviewTableViewCellReactor(item: resolver.resolve(SnapEntity.self)!)
-//        }
-//
-//        container.register(SnapPreviewImageCollectionViewCellReactor.self) { resolver in
-//            SnapPreviewImageCollectionViewCellReactor(item: nil)
-//        }
+        container.register(AddTopicViewController.self) { resolver in
+            AddTopicViewController(with: resolver.resolve(AddTopicReactor.self)!)
+        }
+
+        container.register(AddTopicReactor.self) { resolver in
+            AddTopicReactor()
+        }
+
+        container.register(TopicCollectionViewCellReactor.self) { resolver in
+            TopicCollectionViewCellReactor(item: resolver.resolve(TopicEntity.self)!, indexPath: IndexPath(item: 0, section: 0))
+        }
+
+        container.register(SnapPreviewTableViewCellReactor.self) { resolver in
+            SnapPreviewTableViewCellReactor(item: resolver.resolve(SnapEntity.self)!)
+        }
+
+        container.register(SnapPreviewImageCollectionViewCellReactor.self) { resolver in
+            SnapPreviewImageCollectionViewCellReactor(item: nil)
+        }
 
 //        container.register(OnBoardingCalendarView.self) { resolver in
 //            OnBoardingCalendarView()

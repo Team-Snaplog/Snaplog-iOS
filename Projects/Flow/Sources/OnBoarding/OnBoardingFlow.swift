@@ -22,6 +22,7 @@ public final class OnBoardingFlow: Flow {
 
     public init(container: Container) {
         self.container = container
+//        self.rootViewController = container.resolve(OnBoardingViewController.self)!
     }
 
     public func navigate(to step: Step) -> FlowContributors {
@@ -31,8 +32,8 @@ public final class OnBoardingFlow: Flow {
         case .onBoardingViewIsRequired:
             return navigateToOnBoardingViewController()
 
-        default:
-            return .none
+        case .addTopicViewIsRequired:
+            return navigateToAddTopicViewController()
         }
     }
 }
@@ -44,5 +45,16 @@ public extension OnBoardingFlow {
         self.rootViewController.setViewControllers([onBoardingViewController], animated: true)
 
         return .one(flowContributor: .contribute(withNextPresentable: onBoardingViewController, withNextStepper: onBoardingViewController.reactor!))
+    }
+
+    func navigateToAddTopicViewController() -> FlowContributors {
+        let addTopicFlow = AddTopicFlow(container: container)
+
+        Flows.use(addTopicFlow, when: .created) { (root) in
+            let view = root as? AddTopicViewController
+            self.rootViewController.pushViewController(view!, animated: true)
+        }
+
+        return .one(flowContributor: .contribute(withNextPresentable: addTopicFlow, withNextStepper: OneStepper(withSingleStep: AddTopicStep.addTopicViewIsRequired)))
     }
 }

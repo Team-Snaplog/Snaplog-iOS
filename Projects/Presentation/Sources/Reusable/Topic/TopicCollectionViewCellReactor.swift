@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Domain
+import Core
 
 import RxSwift
 import RxRelay
@@ -27,12 +28,9 @@ public final class TopicCollectionViewCellReactor: BaseReactor {
     public init(item: TopicEntity, indexPath: IndexPath) {
         self.initialState = State(emoji: item.topicEmoji, title: item.topicTitle)
         self.indexPath = indexPath
-//        self.initialState = State(emoji: "🥐", title: "대동빵지도")
     }
 
-    public enum Action {
-        case didTapAddTopicCell
-    }
+    public typealias Action = NoAction
 
     public enum Mutation {
         case setEmoji
@@ -43,19 +41,5 @@ public final class TopicCollectionViewCellReactor: BaseReactor {
     public struct State {
         var emoji: String = ""
         var title: String = ""
-    }
-
-    public func mutate(action: Action) -> Observable<Mutation> {
-        switch action {
-        case .didTapAddTopicCell:
-            if indexPath.item == 0 {
-                print("TAP FIRST")
-                return .just(.setTapped)
-            }
-            else {
-                print("TAP ELSE")
-                return .just(.setTapped)
-            }
-        }
     }
 }
