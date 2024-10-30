@@ -32,8 +32,19 @@ public final class AddTopicFlow: Flow {
         case .addTopicViewIsRequired:
             return navigateToAddTopicViewController()
 
+        case let .completeAddTopicViewisRequired(title, emoji):
+            return .end(forwardToParentFlowWithStep: OnBoardingStep.completeAddTopicViewIsRequired(title, emoji))
+//            return navigateToCompleteAddTopicViewController(title: title, emoji: emoji)
+
         case .popViewController:
             return popViewController()
+
+        case .presentDeniedAlert(target: let target):
+            return .none
+
+        case .addPhotosViewIsRequired:
+//            return navigateToAddPhotosViewController()
+            return .none
         }
     }
 }
@@ -48,10 +59,39 @@ public extension AddTopicFlow {
         return .one(flowContributor: .contribute(withNextPresentable: rootViewController, withNextStepper: rootViewController.reactor!))
     }
 
+//    func navigateToCompleteAddTopicViewController(title: String, emoji: String) -> FlowContributors {
+//        guard let completeAddTopicViewController = container.resolve(
+//            CompleteAddTopicViewController.self,
+//            arguments: title, emoji) else {
+//            return .none
+//        }
+//        let completeAddTopicReactor = completeAddTopicViewController.reactor
+//        completeAddTopicViewController.modalPresentationStyle = .overFullScreen
+//        self.rootViewController.present(completeAddTopicViewController, animated: true)
+//        let completeAddTopicFlow = CompleteAddTopicFlow(container: container)
+//
+//        Flows.use(completeAddTopicFlow, when: .created) { (root) in
+//            let view = root as? CompleteAddTopicViewController
+//            self.rootViewController.setViewC
+//        }
+//
+//        return .one(flowContributor: .contribute(withNextPresentable: completeAddTopicViewController, withNextStepper: completeAddTopicReactor!))
+//    }
+
     func popViewController() -> FlowContributors {
         let popView = self.rootViewController.navigationController?.viewControllers.first as? OnBoardingViewController
         self.rootViewController.navigationController?.popViewController(animated: true)
 
         return .none
     }
+
+//    func navigateToAddPhotosViewController() -> FlowContributors {
+//        let addPhotosFlow = AddPhotosFlow(container: container)
+//
+//        Flows.use(addPhotosFlow, when: .created) { (root) in
+//            let view = root as? AddPhotosViewController
+//            let vc = AddTopicViewController()
+//        }
+//        return .one(flowContributor: .contribute(withNextPresentable: addPhotosFlow, withNextStepper: OneStepper(withSingleStep: AddPhotosStep.addPhotosViewIsRequired)))
+//    }
 }

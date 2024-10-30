@@ -60,8 +60,24 @@ public final class PresentationAssembly: Assembly {
             SnapPreviewImageCollectionViewCellReactor(item: nil)
         }
 
-//        container.register(OnBoardingCalendarView.self) { resolver in
-//            OnBoardingCalendarView()
-//        }
+        container.register(CompleteAddTopicReactor.self) { (resolver, title: String, emoji: String) in
+            CompleteAddTopicReactor(title: title, emoji: emoji)
+        }
+
+        container.register(CompleteAddTopicViewController.self) { (resolver, title: String, emoji: String) in
+            let reactor = resolver.resolve(CompleteAddTopicReactor.self, arguments: title, emoji)
+            let completeAddTopicViewController = CompleteAddTopicViewController(with: reactor!)
+            completeAddTopicViewController.reactor = reactor
+
+            return completeAddTopicViewController
+        }
+
+        container.register(AddPhotosViewController.self) { resolver in
+            AddPhotosViewController(with: resolver.resolve(AddPhotosReactor.self)!)
+        }
+
+        container.register(AddPhotosReactor.self) { resolver in
+            AddPhotosReactor()
+        }
     }
 }

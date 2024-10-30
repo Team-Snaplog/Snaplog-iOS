@@ -28,4 +28,6 @@ public extension TargetDependency.SPM {
     static let RxDataSources = TargetDependency.external(name: "RxDataSources")
     static let RxKeyboard = TargetDependency.external(name: "RxKeyboard")
     static let Swinject = TargetDependency.external(name: "Swinject")
+    static let RealmSwift = TargetDependency.external(name: "RealmSwift")
+    static let RxRealm = TargetDependency.external(name: "RxRealm")
 }

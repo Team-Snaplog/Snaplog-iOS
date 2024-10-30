@@ -13,4 +13,5 @@ public enum AppStep: Step {
     case signInViewIsRequired
     case homeViewIsRequired
     case onBoardingViewIsRequired
+    case completeAddTopicViewIsRequired(String, String)
 }

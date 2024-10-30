@@ -33,8 +33,9 @@ public struct FontProperty {
 public enum Fonts {
     case displayLarge, displayMedium, displaySmall // bold
     case headlineLarge, headlineMedium, headlineSmall // bold
-    case titleLarge, titleMedium, titleSmall // semiBold
-    case labelLarge, labelMedium, labelSmall // regular
+    case titleLarge, titleMedium, titleSmall // bold
+    case labelLarge, labelMedium, labelSmall // semibold
+    case bodyLarge, bodyMedium, bodySmall // regular
     case buttonLarge, buttonMedium, buttonSmall // bold
 
     case calendarWeekdayFont
@@ -61,13 +62,13 @@ public enum Fonts {
             return FontProperty(style: .bold, size: 24, lineHeight: 32)
 
         case .titleLarge:
-            return FontProperty(style: .semiBold, size: 22, lineHeight: 28)
+            return FontProperty(style: .bold, size: 22, lineHeight: 28)
 
         case .titleMedium:
-            return FontProperty(style: .semiBold, size: 18, lineHeight: 24)
+            return FontProperty(style: .bold, size: 18, lineHeight: 24)
 
         case .titleSmall:
-            return FontProperty(style: .semiBold, size: 14, lineHeight: 20)
+            return FontProperty(style: .bold, size: 14, lineHeight: 20)
 
         case .labelLarge:
             return FontProperty(style: .semiBold, size: 16, lineHeight: 24)
@@ -77,6 +78,15 @@ public enum Fonts {
 
         case .labelSmall:
             return FontProperty(style: .semiBold, size: 11, lineHeight: 16)
+
+        case .bodyLarge:
+            return FontProperty(style: .regular, size: 16, lineHeight: 24)
+
+        case .bodyMedium:
+            return FontProperty(style: .regular, size: 14, lineHeight: 20)
+
+        case .bodySmall:
+            return FontProperty(style: .regular, size: 12, lineHeight: 16)
 
         case .buttonLarge:
             return FontProperty(style: .bold, size: 18, lineHeight: 24)

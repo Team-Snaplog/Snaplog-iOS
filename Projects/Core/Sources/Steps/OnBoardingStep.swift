@@ -13,4 +13,5 @@ import RxFlow
 public enum OnBoardingStep: Step {
     case onBoardingViewIsRequired
     case addTopicViewIsRequired
+    case completeAddTopicViewIsRequired(String, String)
 }

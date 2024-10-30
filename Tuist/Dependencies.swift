@@ -25,7 +25,9 @@ let dependencies = Dependencies(
             .remote(url: "https://github.com/onevcat/Kingfisher.git", requirement: .upToNextMajor(from: "7.0.0")),
             .remote(url: "https://github.com/RxSwiftCommunity/RxGesture", requirement: .upToNextMajor(from: "4.0.4")),
             .remote(url: "https://github.com/Swinject/Swinject.git", requirement: .upToNextMajor(from: "2.9.1")),
-            .remote(url: "https://github.com/Team-Snaplog/Moya", requirement: .branch("master"))
+            .remote(url: "https://github.com/Team-Snaplog/Moya", requirement: .branch("master")),
+            .remote(url: "https://github.com/realm/realm-swift.git", requirement: .upToNextMajor(from: "10.54.1")),
+            .remote(url: "https://github.com/RxSwiftCommunity/RxRealm.git", requirement: .upToNextMajor(from: "5.0.7"))
         ],
         productTypes: [
             "Alamofire": .framework,

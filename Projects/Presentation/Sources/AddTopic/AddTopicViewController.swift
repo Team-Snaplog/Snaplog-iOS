@@ -278,6 +278,11 @@ extension AddTopicViewController {
             .map { Reactor.Action.didTapBackButton }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+
+        addTopicButton.rx.tap
+            .map { Reactor.Action.didTapAddTopicButton }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
 
     private func bindState(reactor: AddTopicReactor) {

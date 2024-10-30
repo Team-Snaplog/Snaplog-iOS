@@ -26,6 +26,8 @@ let project = Project.makeModule(
         .SPM.RxGesture,
         .SPM.Swinject,
         .SPM.RxKeyboard,
-        .SPM.FSCalendar
+        .SPM.FSCalendar,
+        .SPM.RealmSwift,
+        .SPM.RxRealm
     ]
 )

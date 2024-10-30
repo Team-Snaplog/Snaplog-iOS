@@ -105,7 +105,8 @@ public final class AddTopicReactor: BaseReactor {
             steps.accept(AddTopicStep.popViewController)
             return .empty()
 
-        default:
+        case .didTapAddTopicButton:
+            steps.accept(AddTopicStep.completeAddTopicViewisRequired(currentState.title!, currentState.emoji!))
             return .empty()
         }
     }

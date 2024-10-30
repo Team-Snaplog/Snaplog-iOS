@@ -37,6 +37,9 @@ public final class AppFlow: Flow {
 
         case .onBoardingViewIsRequired:
             return self.navigateToOnBoardingViewController()
+
+        case let .completeAddTopicViewIsRequired(title, emoji):
+            return self.navigateToCompleteAddTopicViewController(title: title, emoji: emoji)
         }
     }
 }
@@ -78,5 +81,22 @@ public extension AppFlow {
         }
 
         return .one(flowContributor: .contribute(withNextPresentable: onBoardingFlow, withNextStepper: OneStepper(withSingleStep: OnBoardingStep.onBoardingViewIsRequired)))
+    }
+
+    func navigateToCompleteAddTopicViewController(title: String, emoji: String) -> FlowContributors {
+        let completeAddTopicFlow = CompleteAddTopicFlow(container: container)
+
+        Flows.use(completeAddTopicFlow, when: .created) { (root) in
+            UIView.transition(with: self.window, duration: 1.0) {
+                self.window.rootViewController = root
+            }
+        }
+
+        return .one(flowContributor: .contribute(
+            withNextPresentable: completeAddTopicFlow,
+            withNextStepper: OneStepper(
+                withSingleStep: CompleteAddTopicStep.completeAddTopicViewisRequired(title, emoji)
+            )
+        ))
     }
 }

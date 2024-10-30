@@ -12,5 +12,9 @@ import RxFlow
 
 public enum AddTopicStep: Step {
     case addTopicViewIsRequired
+    case completeAddTopicViewisRequired(String, String)
+//    case cameraViewIsRequired
+    case presentDeniedAlert(target: String)
     case popViewController
+    case addPhotosViewIsRequired
 }

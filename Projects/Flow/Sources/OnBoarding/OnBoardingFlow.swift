@@ -34,6 +34,9 @@ public final class OnBoardingFlow: Flow {
 
         case .addTopicViewIsRequired:
             return navigateToAddTopicViewController()
+
+        case let .completeAddTopicViewIsRequired(title, emoji):
+            return .end(forwardToParentFlowWithStep: AppStep.completeAddTopicViewIsRequired(title, emoji))
         }
     }
 }

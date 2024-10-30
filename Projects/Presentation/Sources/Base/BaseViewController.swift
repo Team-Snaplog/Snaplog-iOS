@@ -53,7 +53,12 @@ public class BaseViewController<Reactor: BaseReactor>: UIViewController {
         let view = PassThroughView()
         return view
     }()
-    
+
+    public let rightButton: UIButton = {
+        let button = UIButton(type: .custom)
+        return button
+    }()
+
     // MARK: - Life Cycle
     
     public override func viewDidLoad() {
@@ -95,7 +100,15 @@ public class BaseViewController<Reactor: BaseReactor>: UIViewController {
             $0.bottom.equalToSuperview().offset(-16)
         }
     }
-    
+
+    public func addRightButton() {
+        self.navigationBarArea.addSubview(rightButton)
+        rightButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-16)
+            make.bottom.equalToSuperview().offset(-12)
+        }
+    }
+
     public func configureUI() {
         self.view.addSubViews([self.keyboardWrapperView, self.keyboardSafeAreaView])
         self.keyboardSafeAreaView.addSubview(self.navigationBarArea)
