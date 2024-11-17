@@ -27,7 +27,9 @@ public final class PhotoCell: UICollectionViewCell, ReactorKit.View {
 
     public var checkImageView: UIImageView = {
         var imageView = UIImageView()
-        imageView.image = UIImage(systemName: "checkmark.circle.fill")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isHidden = true
+        imageView.image = DesignSystemAsset.Image.photoCheck.image
         return imageView
     }()
 
@@ -43,7 +45,7 @@ public final class PhotoCell: UICollectionViewCell, ReactorKit.View {
 
     private func render() {
         contentView.addSubViews([imageView])
-//        imageView.addSubViews([checkImageView])
+        imageView.addSubViews([checkImageView])
 
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(1.5)
@@ -51,11 +53,23 @@ public final class PhotoCell: UICollectionViewCell, ReactorKit.View {
             make.trailing.equalToSuperview().offset(-1.5)
             make.bottom.equalToSuperview().offset(-1.5)
         }
+
+        checkImageView.snp.makeConstraints { make in
+            make.size.equalTo(20)
+            make.trailing.equalToSuperview().offset(-8)
+            make.bottom.equalToSuperview().offset(-8)
+        }
     }
 }
 
 extension PhotoCell {
     public func bind(reactor: PhotoCellReactor) {
-
+//        reactor.state.map { $0.isSelected }
+//            .distinctUntilChanged()
+//            .withUnretained(self)
+//            .bind(onNext: { cell, isSelected in
+//                cell.checkImageView.isHidden = !isSelected
+//            })
+//            .disposed(by: disposeBag)
     }
 }

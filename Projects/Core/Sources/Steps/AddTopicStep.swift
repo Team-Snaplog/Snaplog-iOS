@@ -17,4 +17,5 @@ public enum AddTopicStep: Step {
     case presentDeniedAlert(target: String)
     case popViewController
     case addPhotosViewIsRequired
+    case onBoardingViewIsRequired
 }

@@ -59,6 +59,24 @@ public class BaseViewController<Reactor: BaseReactor>: UIViewController {
         return button
     }()
 
+    public let centerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        return stackView
+    }()
+
+    public let centerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        return label
+    }()
+
+    public let centerButton: UIButton = {
+        let button = UIButton(type: .custom)
+        return button
+    }()
+
     // MARK: - Life Cycle
     
     public override func viewDidLoad() {
@@ -81,7 +99,27 @@ public class BaseViewController<Reactor: BaseReactor>: UIViewController {
         super.touchesEnded(touches, with: event)
         self.view.endEditing(true)
    }
-    
+
+    public func addNavigationTitleWithButton(_ title: String? = nil, _ image: UIImage? = nil) {
+        [centerLabel, centerButton].forEach {
+            self.centerStackView.addArrangedSubview($0)
+        }
+
+        self.navigationBarArea.addSubview(centerStackView)
+        centerStackView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-15)
+        }
+
+        if let title = title {
+            centerLabel.text = title
+        }
+
+        if let image = image {
+            centerButton.setImage(image, for: .normal)
+        }
+    }
+
     public func addNavigationTitleLabel(_ title: String? = nil) {
         self.navigationBarArea.addSubview(navigationTitleLabel)
         navigationTitleLabel.snp.makeConstraints {

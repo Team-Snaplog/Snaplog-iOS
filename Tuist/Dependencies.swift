@@ -5,7 +5,7 @@
 //  Created by 강민성 on 8/25/24.
 //
 
-import ProjectDescription
+@preconcurrency import ProjectDescription
 import ProjectDescriptionHelpers
 
 let dependencies = Dependencies(
@@ -14,8 +14,7 @@ let dependencies = Dependencies(
             .remote(url: "https://github.com/ReactiveX/RxSwift.git", requirement: .exact("6.6.0")),
             .remote(url: "https://github.com/ReactorKit/ReactorKit.git", requirement: .upToNextMajor(from: "3.2.0")),
             .remote(url: "https://github.com/SnapKit/SnapKit.git", requirement: .upToNextMajor(from: "5.6.0")),
-            .remote(url: "https://github.com/WenchaoD/FSCalendar.git", requirement: .upToNextMajor(from: "2.8.3")),
-//            .remote(url: "https://github.com/firebase/firebase-ios-sdk", requirement: .upToNextMajor(from: "10.19.1")),
+//            .remote(url: "https://github.com/WenchaoD/FSCalendar.git", requirement: .upToNextMajor(from: "2.8.3")),
             .remote(url: "https://github.com/guoyingtao/Mantis.git", requirement: .exact("2.18.0")),
             .remote(url: "https://github.com/RxSwiftCommunity/RxFlow.git", requirement: .upToNextMajor(from: "2.10.0")),
             .remote(url: "https://github.com/RxSwiftCommunity/RxAlamofire.git", requirement: .upToNextMajor(from: "6.1.2")),
@@ -25,14 +24,12 @@ let dependencies = Dependencies(
             .remote(url: "https://github.com/onevcat/Kingfisher.git", requirement: .upToNextMajor(from: "7.0.0")),
             .remote(url: "https://github.com/RxSwiftCommunity/RxGesture", requirement: .upToNextMajor(from: "4.0.4")),
             .remote(url: "https://github.com/Swinject/Swinject.git", requirement: .upToNextMajor(from: "2.9.1")),
-            .remote(url: "https://github.com/Team-Snaplog/Moya", requirement: .branch("master")),
-            .remote(url: "https://github.com/realm/realm-swift.git", requirement: .upToNextMajor(from: "10.54.1")),
-            .remote(url: "https://github.com/RxSwiftCommunity/RxRealm.git", requirement: .upToNextMajor(from: "5.0.7"))
+            .remote(url: "https://github.com/Team-Snaplog/Moya", requirement: .branch("master"))
         ],
-        productTypes: [
-            "Alamofire": .framework,
-            "FSCalendar": .framework
-        ],
+//        productTypes: [
+//            "Alamofire": .framework,
+//            "FSCalendar": .framework
+//        ],
         baseSettings: .settings(configurations: [
             .debug(name: .dev),
             .debug(name: .stage),

@@ -12,4 +12,5 @@ import RxFlow
 
 public enum AddPhotosStep: Step {
     case addPhotosViewIsRequired
+    case mainViewIsRequired
 }

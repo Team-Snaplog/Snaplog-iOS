@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23231" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="LocalData">
+    <entity name="LocalSnap" representedClassName="LocalSnap" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" optional="YES" attributeType="Transformable" customClassName="[Data]"/>
+        <relationship name="localTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocalTopic"/>
+    </entity>
+    <entity name="LocalTopic" representedClassName="LocalTopic" syncable="YES">
+        <attribute name="emoji" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+</model>

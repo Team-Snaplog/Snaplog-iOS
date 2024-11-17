@@ -42,7 +42,7 @@ public final class TopicRecommendCollectionViewCell: UICollectionViewCell, React
         super.init(frame: .zero)
         layer.cornerRadius = 17
         layer.borderWidth = 1
-        layer.borderColor = DesignSystemAsset.AzureColor.azure100.color.cgColor
+        layer.borderColor = DesignSystemAsset.AzureColor.azure200.color.cgColor
 //        layer.borderColor = DesignSystemAsset.AzureColor.azure50.color.cgColor
         backgroundColor = .white
         render()

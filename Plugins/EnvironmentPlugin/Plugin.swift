@@ -5,6 +5,6 @@
 //  Created by 강민성 on 8/25/24.
 //
 
-import ProjectDescription
+@preconcurrency import ProjectDescription
 
 let plugin = Plugin(name: "EnvironmentPlugin")

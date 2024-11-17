@@ -45,6 +45,9 @@ public final class AddTopicFlow: Flow {
         case .addPhotosViewIsRequired:
 //            return navigateToAddPhotosViewController()
             return .none
+
+        case .onBoardingViewIsRequired:
+            return .end(forwardToParentFlowWithStep: OnBoardingStep.onBoardingViewIsRequired)
         }
     }
 }

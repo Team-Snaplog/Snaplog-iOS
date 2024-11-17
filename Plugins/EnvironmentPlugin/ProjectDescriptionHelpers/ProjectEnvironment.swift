@@ -5,9 +5,9 @@
 //  Created by 강민성 on 8/25/24.
 //
 
-import ProjectDescription
+@preconcurrency import ProjectDescription
 
-public struct ProjectEnvironment {
+public struct ProjectEnvironment: Sendable {
     public let appName: String
     public let targetName: String
     public let targetTestName: String
@@ -22,7 +22,8 @@ public let env = ProjectEnvironment(
     targetName: "Snaplog",
     targetTestName: "Snaplog-Test",
     organizationName: "com.team.snaplog",
-    deploymentTarget: .iOS(targetVersion: "16.0", devices: [.iphone]),
+    deploymentTarget: .iOS(targetVersion: "16.0", devices: [.iphone], supportsMacDesignedForIOS: false),
     platform: .iOS,
-    baseSetting: ["OTHER_LDFLAGS": ["-ObjC -framework Alamofire -framework FSCalendar"]]
+//    baseSetting: ["OTHER_LDFLAGS": ["-ObjC -framework Alamofire -framework Firebase"]]
+    baseSetting: ["OTHER_LDFLAGS": ["-ObjC", "$(OTHER_LDFLAGS)" ]]
 )

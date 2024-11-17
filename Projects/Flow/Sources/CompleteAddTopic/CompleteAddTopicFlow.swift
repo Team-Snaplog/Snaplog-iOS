@@ -34,7 +34,9 @@ public final class CompleteAddTopicFlow: Flow {
 
         case .addPhotosViewIsRequired:
             return navigateToAddPhotosViewController()
-//            return .none
+
+        case .onBoardingViewIsRequired:
+            return .end(forwardToParentFlowWithStep: AppStep.onBoardingViewIsRequired)
         }
     }
 }
@@ -64,6 +66,7 @@ public extension CompleteAddTopicFlow {
         let addPhotosFlow = AddPhotosFlow(container: container)
 
         Flows.use(addPhotosFlow, when: .created) { (root) in
+            print(root)
             let view = root as? AddPhotosViewController
             self.rootViewController.pushViewController(view!, animated: true)
         }

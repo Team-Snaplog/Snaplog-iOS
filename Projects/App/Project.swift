@@ -6,7 +6,7 @@
 //
 
 import ProjectDescriptionHelpers
-import ProjectDescription
+@preconcurrency import ProjectDescription
 import DependencyPlugin
 import EnvironmentPlugin
 import ConfigurationPlugin
@@ -27,6 +27,7 @@ let settings: Settings = .settings(
 )
 
 let scripts: [TargetScript] = isCI ? [] : [.swiftLint]
+//let scripts: [TargetScript] = [.swiftLint]
 
 let targets: [Target] = [
     .init(
@@ -34,23 +35,29 @@ let targets: [Target] = [
         platform: env.platform,
         product: .app,
         bundleId: "$(APP_BUNDLE_ID)",
-        deploymentTarget: env.deploymentTarget,
+        deploymentTarget: .iOS(targetVersion: "16.0", devices: [.iphone], supportsMacDesignedForIOS: false),
         infoPlist: .file(path: "Support/Info.plist"),
         sources: .sources,
         resources: .resources,
         entitlements: nil,
         scripts: scripts,
         dependencies: [
-            .Projects.flow
+            .Projects.flow,
+            .SPM.FirebaseCore,
+            .SPM.FirebaseAuth,
+            .SPM.GoogleSignIn,
+            .SPM.Then,
+            .SPM.KeychainSwift
         ],
         settings: .settings(base: env.baseSetting)
+//        coreDataModels: [CoreDataModel("Resources/LocalData.xcdatamodeld")]
     ),
     .init(
         name: env.targetTestName,
         platform: .iOS,
         product: .unitTests,
         bundleId: "\(env.organizationName).\(env.targetName)Tests",
-        deploymentTarget: env.deploymentTarget,
+        deploymentTarget: .iOS(targetVersion: "16.0", devices: [.iphone], supportsMacDesignedForIOS: false),
         infoPlist: .default,
         sources: .unitTests,
         dependencies: [
@@ -102,6 +109,12 @@ let schemes: [Scheme] = [
 let project = Project(
     name: env.targetName,
     organizationName: env.organizationName,
+    packages: [
+        .remote(url: "https://github.com/google/GoogleSignIn-iOS", requirement: .upToNextMajor(from: "8.0.0")),
+        .remote(url: "https://github.com/firebase/firebase-ios-sdk", requirement: .upToNextMajor(from: "11.4.0")),
+        .remote(url: "https://github.com/devxoul/Then", requirement: .upToNextMajor(from: "3.0.0")),
+        .remote(url: "https://github.com/evgenyneu/keychain-swift.git", requirement: .upToNextMajor(from: "24.0.0"))
+    ],
     settings: settings,
     targets: targets,
     schemes: schemes

@@ -5,7 +5,7 @@
 //  Created by 강민성 on 8/27/24.
 //
 
-import ProjectDescription
+@preconcurrency import ProjectDescription
 
 public extension ResourceFileElements {
     static let resources: Self = "Resources/**"

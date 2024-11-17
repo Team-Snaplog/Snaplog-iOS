@@ -6,13 +6,16 @@
 //  Copyright © 2024 com.team.snaplog. All rights reserved.
 //
 
-
 import UIKit
 import Presentation
 import Core
 import Data
 import Domain
 import DesignSystem
+import CoreData
+//import FirebaseCore
+//import FirebaseAuth
+//import GoogleSignIn
 
 import Swinject
 
@@ -22,15 +25,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var container = Container()
     var assembler: Assembler!
 
+//    lazy var persistentContainer: NSPersistentContainer = {
+//        let container = NSPersistentContainer(name: "LocalData")
+//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+//            if let error = error as NSError? {
+//                fatalError()
+//            }
+//        })
+//        return container
+//    }()
+//
+//    func saveContext() {
+//        let context = persistentContainer.viewContext
+//        if context.hasChanges {
+//            do {
+//                try context.save()
+//            } catch {
+//                let nsError = error as NSError
+//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            }
+//        }
+//    }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+//        FirebaseApp.configure()
+//
+//        if let user = Auth.auth().currentUser {
+//            user.getIDToken { idToken, error in
+//                if let error = error {
+//                    fatalError()
+//                }
+//                if let idToken = idToken {
+//                    print(idToken)
+//                }
+//            }
+//        }
 
         DesignSystemFontFamily.registerAllCustomFonts()
 
         assembler = Assembler([
-            PresentationAssembly()
+            PresentationAssembly(),
+            DataAssembly()
         ], container: AppDelegate.container)
-        
+
         return true
     }
 

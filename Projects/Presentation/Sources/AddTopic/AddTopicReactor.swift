@@ -11,7 +11,8 @@ import DesignSystem
 import Domain
 import Utility
 import Core
-
+import Data
+import CoreData
 import RxSwift
 import RxRelay
 import RxFlow
@@ -106,6 +107,10 @@ public final class AddTopicReactor: BaseReactor {
             return .empty()
 
         case .didTapAddTopicButton:
+            let newTopic = CoreDataManager.shared.createTopic(emoji: currentState.emoji!, title: currentState.title!)
+            if let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last {
+                print("로컬 저장소: \(documentsDirectoryURL)")
+            }
             steps.accept(AddTopicStep.completeAddTopicViewisRequired(currentState.title!, currentState.emoji!))
             return .empty()
         }

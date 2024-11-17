@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 import SnapKit
-import FSCalendar
+//import FSCalendar
 import RxGesture
 
 public final class OnBoardingViewController: BaseViewController<OnBoardingReactor>, ReactorKit.View {

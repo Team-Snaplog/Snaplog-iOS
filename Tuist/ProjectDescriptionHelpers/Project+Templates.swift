@@ -10,7 +10,7 @@ import EnvironmentPlugin
 import ConfigurationPlugin
 import DependencyPlugin
 
-let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? true : false
+//let isCI = (ProcessInfo.processInfo.environment["TUIST_CI"] ?? "0") == "1" ? true : false
 
 public enum ModuleTarget {
     case unitTest
@@ -29,7 +29,8 @@ public extension Project {
         resources: ResourceFileElements? = nil,
         resourceSynthesizers: [ResourceSynthesizer] = .default + [],
         settings: SettingsDictionary = [:],
-        additionalPlistRows: [String: ProjectDescription.InfoPlist.Value] = [:]
+        additionalPlistRows: [String: ProjectDescription.Plist.Value] = [:],
+        coreDataModels: [CoreDataModel] = []
     ) -> Project {
         let scripts: [TargetScript] = isCI ? [] : [.swiftLint]
 
@@ -46,7 +47,7 @@ public extension Project {
         ]
 
         let settings: Settings = .settings(
-            base: env.baseSetting,
+            base: env.baseSetting.merging(settings),
 //                .merging(.codeSign)
 //                .merging(settings),
             configurations: configurations,
@@ -58,12 +59,13 @@ public extension Project {
                 platform: platform,
                 product: product,
                 bundleId: "\(env.organizationName).\(name)",
-                deploymentTarget: env.deploymentTarget,
+                deploymentTarget: .iOS(targetVersion: "16.0", devices: [.iphone], supportsMacDesignedForIOS: false),
                 infoPlist: .extendingDefault(with: additionalPlistRows),
                 sources: sources,
                 resources: resources,
                 scripts: scripts,
-                dependencies: dependencies
+                dependencies: dependencies,
+                coreDataModels: coreDataModels
             )
         ]
 

@@ -10,6 +10,7 @@ import Foundation
 import Domain
 import DesignSystem
 import Core
+import Data
 
 import RxSwift
 import RxRelay
@@ -44,15 +45,7 @@ public final class OnBoardingReactor: BaseReactor {
 
     public struct State {
         var currentPage: Date = Date()
-        var topics: [TopicEntity] = [
-            TopicEntity(topicId: 1, topicTitle: "1번", topicEmoji: "🤬"),
-            TopicEntity(topicId: 2, topicTitle: "2번", topicEmoji: "🤬"),
-            TopicEntity(topicId: 3, topicTitle: "3번", topicEmoji: "🤬"),
-            TopicEntity(topicId: 4, topicTitle: "4번", topicEmoji: "🤬"),
-            TopicEntity(topicId: 5, topicTitle: "5번", topicEmoji: "🤬"),
-            TopicEntity(topicId: 6, topicTitle: "6번", topicEmoji: "🤬"),
-            TopicEntity(topicId: 7, topicTitle: "7번", topicEmoji: "🤬")
-        ]
+        var topics: [TopicEntity] = []
         var snaps: [SnapEntity] = [
             SnapEntity(snapId: 0, date: Date.now,
                        body: nil,
@@ -124,15 +117,26 @@ public final class OnBoardingReactor: BaseReactor {
             state.currentPage = date
 
         case .setTopics(let topics):
-            if currentState.isAppendAddTopic == false {
-                var appendedTopics = topics
-                appendedTopics.insert(TopicEntity(topicId: 0, topicTitle: "주제 추가", topicEmoji: "+"), at: 0)
-                state.isAppendAddTopic = true
-                state.topics = appendedTopics
+            let fetchedTopics = CoreDataManager.shared.fetchAllTopics()
+            if fetchedTopics.count == 0 {
+                var topics: [TopicEntity] = [TopicEntity(topicId: 0, topicTitle: "주제 추가", topicEmoji: "+")]
+                state.topics = topics
             } else {
-                var appendedTopics = topics
-                state.topics = appendedTopics
+                var topics: [TopicEntity] = fetchedTopics.map {
+                    TopicEntity(topicId: Int($0.id), topicTitle: $0.title!, topicEmoji: $0.emoji!)
+                }
+                topics.insert(TopicEntity(topicId: 0, topicTitle: "주제 추가", topicEmoji: "+"), at: 0)
+                state.topics = topics
             }
+//            if currentState.isAppendAddTopic == false {
+//                var appendedTopics = topics
+//                appendedTopics.insert(TopicEntity(topicId: 0, topicTitle: "주제 추가", topicEmoji: "+"), at: 0)
+//                state.isAppendAddTopic = true
+//                state.topics = appendedTopics
+//            } else {
+//                var appendedTopics = topics
+//                state.topics = appendedTopics
+//            }
 
         case .setPreviews(let snaps):
             state.snaps = snaps

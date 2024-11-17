@@ -26,11 +26,16 @@ public final class AddPhotosFlow: Flow {
     }
 
     public func navigate(to step: Step) -> FlowContributors {
-        guard let step = step as? AddPhotosStep else { return .none }
+        guard let step = step as? AddPhotosStep else {
+            return .none
+        }
 
         switch step {
         case .addPhotosViewIsRequired:
             return navigateToAddPhotosViewController()
+
+        case .mainViewIsRequired:
+            return .end(forwardToParentFlowWithStep: CompleteAddTopicStep.onBoardingViewIsRequired)
         }
     }
 }
@@ -38,5 +43,9 @@ public final class AddPhotosFlow: Flow {
 public extension AddPhotosFlow {
     func navigateToAddPhotosViewController() -> FlowContributors {
         return .one(flowContributor: .contribute(withNextPresentable: rootViewController, withNextStepper: rootViewController.reactor!))
+    }
+
+    func navigateToMainViewController() -> FlowContributors {
+        return .end(forwardToParentFlowWithStep: AppStep.onBoardingViewIsRequired)
     }
 }

@@ -5,7 +5,7 @@
 //  Created by 강민성 on 8/27/24.
 //
 
-import ProjectDescription
+@preconcurrency import ProjectDescription
 import ProjectDescriptionHelpers
 import DependencyPlugin
 
@@ -13,6 +13,11 @@ let project = Project.makeModule(
     name: "ThirdPartyLib",
     product: .staticFramework,
     targets: [],
+    packages: [
+//               .Then,
+//               .Firebase,
+//               .GoogleSignIn,
+               /*.KeychainSwift*/],
     dependencies: [
         .SPM.RxCocoa,
         .SPM.RxFlow,
@@ -25,9 +30,6 @@ let project = Project.makeModule(
         .SPM.ReactorKit,
         .SPM.RxGesture,
         .SPM.Swinject,
-        .SPM.RxKeyboard,
-        .SPM.FSCalendar,
-        .SPM.RealmSwift,
-        .SPM.RxRealm
+        .SPM.RxKeyboard
     ]
 )

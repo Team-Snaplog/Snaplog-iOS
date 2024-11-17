@@ -13,4 +13,5 @@ import RxFlow
 public enum CompleteAddTopicStep: Step {
     case completeAddTopicViewisRequired(String, String)
     case addPhotosViewIsRequired
+    case onBoardingViewIsRequired
 }

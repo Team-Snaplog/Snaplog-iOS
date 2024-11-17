@@ -5,7 +5,7 @@
 //  Created by 강민성 on 8/25/24.
 //
 
-import ProjectDescription
+@preconcurrency import ProjectDescription
 
 public extension SourceFilesList {
     static let demoSources: SourceFilesList = "Demo/Sources/**"

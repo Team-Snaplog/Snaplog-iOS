@@ -5,10 +5,10 @@
 //  Created by 강민성 on 8/27/24.
 //
 
-import ProjectDescription
+@preconcurrency import ProjectDescription
 
-//public extension SettingsDictionary {
-//    static let codeSign = SettingsDictionary()
-//        .codeSignIdentityAppleDevelopment()
-//        .automaticCodeSigning(devTeam: "Z25H7B85Z8")
-//}
+public extension SettingsDictionary {
+    static let codeSign = SettingsDictionary()
+        .codeSignIdentityAppleDevelopment()
+        .automaticCodeSigning(devTeam: "Z25H7B85Z8")
+}

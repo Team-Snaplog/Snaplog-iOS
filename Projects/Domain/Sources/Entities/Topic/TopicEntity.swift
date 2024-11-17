@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TopicEntity: Equatable, Hashable {
+public struct TopicEntity: Equatable {
     public let topicId: Int
     public let topicTitle: String
     public let topicEmoji: String
